@@ -1,7 +1,34 @@
 package ru.cource;
 
+import lombok.SneakyThrows;
+import ru.cource.thread.*;
+
 public class Main {
+    @SneakyThrows
     public static void main(String[] args) {
+//  thread
+        var fraction = new Fraction(2, 3);
+        Fractionable fractionCached = CacheProxyUtils.cache(fraction);
+
+        System.out.println("Cache init 2/3");
+        System.out.println("1: " + fractionCached.doubleValue());
+        System.out.println("2: " + fractionCached.doubleValue());
+
+        fractionCached.setNum(5);
+        System.out.println("setNum 5");
+        System.out.println("3: " + fractionCached.doubleValue());
+        System.out.println("4: " + fractionCached.doubleValue());
+
+        fractionCached.setNum(2);
+        System.out.println("setNum 2");
+        System.out.println("5: " + fractionCached.doubleValue());
+        System.out.println("6: " + fractionCached.doubleValue());
+
+        System.out.println("sleep");
+        Thread.sleep(1500L);
+        System.out.println("7: " + fractionCached.doubleValue());
+        System.out.println("8: " + fractionCached.doubleValue());
+
 //  reflection
 //        var fraction = new Fraction(2, 3);
 //        Fractionable fractionCached = Utils.cache(fraction);
