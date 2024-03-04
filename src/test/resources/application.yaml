@@ -1,0 +1,33 @@
+reader:
+  path: "src/test/resources/logs/"
+
+fixer:
+  applicationType:
+    pattern: web|mobile
+    changeValue: "other: "
+
+logger:
+  path: src/main/resources/
+  fileError: error.log
+  fileInfo: info.log
+
+logging:
+  level:
+    root: info
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    username: user
+    password: pass
+    url: jdbc:h2:./src/main/resources/db/logs
+    driver-class-name: org.h2.Driver
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        enable_lazy_load_no_trans: true
+        hbm2ddl:
+          auto: validate

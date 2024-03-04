@@ -1,33 +1,43 @@
 package ru.cource;
 
-import lombok.SneakyThrows;
-import ru.cource.thread.*;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import ru.cource.spring.AppConfig;
+import ru.cource.spring.Worker;
+import ru.cource.spring.read.FolderReader;
 
+import java.sql.*;
+
+@SpringBootApplication
 public class Main {
-    @SneakyThrows
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
+        ApplicationContext context = SpringApplication.run(Main.class,args);
+        Worker worker = context.getBean("worker", Worker.class);
+        worker.make();
+
 //  thread
-        var fraction = new Fraction(2, 3);
-        Fractionable fractionCached = CacheProxyUtils.cache(fraction);
-
-        System.out.println("Cache init 2/3");
-        System.out.println("1: " + fractionCached.doubleValue());
-        System.out.println("2: " + fractionCached.doubleValue());
-
-        fractionCached.setNum(5);
-        System.out.println("setNum 5");
-        System.out.println("3: " + fractionCached.doubleValue());
-        System.out.println("4: " + fractionCached.doubleValue());
-
-        fractionCached.setNum(2);
-        System.out.println("setNum 2");
-        System.out.println("5: " + fractionCached.doubleValue());
-        System.out.println("6: " + fractionCached.doubleValue());
-
-        System.out.println("sleep");
-        Thread.sleep(1500L);
-        System.out.println("7: " + fractionCached.doubleValue());
-        System.out.println("8: " + fractionCached.doubleValue());
+//        var fraction = new Fraction(2, 3);
+//        Fractionable fractionCached = CacheProxyUtils.cache(fraction);
+//
+//        System.out.println("Cache init 2/3");
+//        System.out.println("1: " + fractionCached.doubleValue());
+//        System.out.println("2: " + fractionCached.doubleValue());
+//
+//        fractionCached.setNum(5);
+//        System.out.println("setNum 5");
+//        System.out.println("3: " + fractionCached.doubleValue());
+//        System.out.println("4: " + fractionCached.doubleValue());
+//
+//        fractionCached.setNum(2);
+//        System.out.println("setNum 2");
+//        System.out.println("5: " + fractionCached.doubleValue());
+//        System.out.println("6: " + fractionCached.doubleValue());
+//
+//        System.out.println("sleep");
+//        Thread.sleep(1500L);
+//        System.out.println("7: " + fractionCached.doubleValue());
+//        System.out.println("8: " + fractionCached.doubleValue());
 
 //  reflection
 //        var fraction = new Fraction(2, 3);
@@ -46,7 +56,6 @@ public class Main {
 //        System.out.println("21: "+fractionCached.invertedDoubleValue());
 //        System.out.println("23: "+fractionCached.doubleValue());
 //        System.out.println("21: "+fractionCached.invertedDoubleValue());
-
 
 //  oop
 //        var caretaker = new AccountCaretaker();

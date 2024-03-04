@@ -1,6 +1,9 @@
 plugins {
     id 'java'
+    id 'org.springframework.boot' version '2.7.18'
 }
+
+apply plugin: 'io.spring.dependency-management'
 
 group = 'org.example'
 version = '1.0-SNAPSHOT'
@@ -16,8 +19,18 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok:1.18.30'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.1'
+    implementation 'javax.annotation:javax.annotation-api'
+    implementation 'org.springframework:spring-context'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+
+    implementation 'com.h2database:h2'
+    implementation 'org.yaml:snakeyaml'
+    implementation 'com.opencsv:opencsv:5.9'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
     testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 test {
